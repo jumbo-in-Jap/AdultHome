@@ -13,6 +13,9 @@
 		8CCCB1F419D75E2100178BA1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCCB1F319D75E2100178BA1 /* Images.xcassets */; };
 		8CCCB1F719D75E2100178BA1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCCB1F519D75E2100178BA1 /* LaunchScreen.xib */; };
 		8CCCB20319D75E2100178BA1 /* AdultKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB20219D75E2100178BA1 /* AdultKeyTests.swift */; };
+		8CCCB20F19D75E7200178BA1 /* MyHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB20D19D75E7200178BA1 /* MyHomeManager.swift */; };
+		8CCCB21019D75E7200178BA1 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB20E19D75E7200178BA1 /* util.swift */; };
+		8CCCB21319D75E8100178BA1 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCCB21219D75E8100178BA1 /* HomeKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,10 @@
 		8CCCB1FC19D75E2100178BA1 /* AdultKeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdultKeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCCB20119D75E2100178BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CCCB20219D75E2100178BA1 /* AdultKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultKeyTests.swift; sourceTree = "<group>"; };
+		8CCCB20D19D75E7200178BA1 /* MyHomeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHomeManager.swift; sourceTree = "<group>"; };
+		8CCCB20E19D75E7200178BA1 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		8CCCB21119D75E8000178BA1 /* AdultKey.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AdultKey.entitlements; sourceTree = "<group>"; };
+		8CCCB21219D75E8100178BA1 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CCCB21319D75E8100178BA1 /* HomeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +67,7 @@
 		8CCCB1DE19D75E2100178BA1 = {
 			isa = PBXGroup;
 			children = (
+				8CCCB21219D75E8100178BA1 /* HomeKit.framework */,
 				8CCCB1E919D75E2100178BA1 /* AdultKey */,
 				8CCCB1FF19D75E2100178BA1 /* AdultKeyTests */,
 				8CCCB1E819D75E2100178BA1 /* Products */,
@@ -77,6 +86,8 @@
 		8CCCB1E919D75E2100178BA1 /* AdultKey */ = {
 			isa = PBXGroup;
 			children = (
+				8CCCB21119D75E8000178BA1 /* AdultKey.entitlements */,
+				8CCCB20C19D75E7200178BA1 /* util */,
 				8CCCB1EC19D75E2100178BA1 /* AppDelegate.swift */,
 				8CCCB1EE19D75E2100178BA1 /* ViewController.swift */,
 				8CCCB1F019D75E2100178BA1 /* Main.storyboard */,
@@ -110,6 +121,15 @@
 				8CCCB20119D75E2100178BA1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8CCCB20C19D75E7200178BA1 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				8CCCB20D19D75E7200178BA1 /* MyHomeManager.swift */,
+				8CCCB20E19D75E7200178BA1 /* util.swift */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +181,12 @@
 				TargetAttributes = {
 					8CCCB1E619D75E2100178BA1 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 2W49MSE7FF;
+						SystemCapabilities = {
+							com.apple.HomeKit = {
+								enabled = 1;
+							};
+						};
 					};
 					8CCCB1FB19D75E2100178BA1 = {
 						CreatedOnToolsVersion = 6.0;
@@ -213,7 +239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCCB1EF19D75E2100178BA1 /* ViewController.swift in Sources */,
+				8CCCB20F19D75E7200178BA1 /* MyHomeManager.swift in Sources */,
 				8CCCB1ED19D75E2100178BA1 /* AppDelegate.swift in Sources */,
+				8CCCB21019D75E7200178BA1 /* util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,9 +364,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AdultKey/AdultKey.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AdultKey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -346,9 +378,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AdultKey/AdultKey.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AdultKey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
