@@ -16,6 +16,10 @@
 		8CCCB20F19D75E7200178BA1 /* MyHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB20D19D75E7200178BA1 /* MyHomeManager.swift */; };
 		8CCCB21019D75E7200178BA1 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB20E19D75E7200178BA1 /* util.swift */; };
 		8CCCB21319D75E8100178BA1 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCCB21219D75E8100178BA1 /* HomeKit.framework */; };
+		8CCCB21519D7606800178BA1 /* SetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB21419D7606800178BA1 /* SetHomeViewController.swift */; };
+		8CCCB21819D7668900178BA1 /* bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB21719D7668900178BA1 /* bridge.m */; };
+		8CCCB21A19D7904000178BA1 /* AccessoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCCB21919D7904000178BA1 /* AccessoriesTableViewController.swift */; };
+		F099040F68844148B51AC898 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2ECD7093294452B6AFF82B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +47,12 @@
 		8CCCB20E19D75E7200178BA1 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		8CCCB21119D75E8000178BA1 /* AdultKey.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AdultKey.entitlements; sourceTree = "<group>"; };
 		8CCCB21219D75E8100178BA1 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		8CCCB21419D7606800178BA1 /* SetHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetHomeViewController.swift; sourceTree = "<group>"; };
+		8CCCB21619D7668900178BA1 /* AdultKey-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdultKey-Bridging-Header.h"; sourceTree = "<group>"; };
+		8CCCB21719D7668900178BA1 /* bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bridge.m; path = util/bridge.m; sourceTree = "<group>"; };
+		8CCCB21919D7904000178BA1 /* AccessoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoriesTableViewController.swift; sourceTree = "<group>"; };
+		9D2ECD7093294452B6AFF82B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F39BC6E1D79F475591F023EF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCCB21319D75E8100178BA1 /* HomeKit.framework in Frameworks */,
+				F099040F68844148B51AC898 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F08285C873342FFBB960106 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D2ECD7093294452B6AFF82B /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8CCCB1DE19D75E2100178BA1 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +90,8 @@
 				8CCCB1E919D75E2100178BA1 /* AdultKey */,
 				8CCCB1FF19D75E2100178BA1 /* AdultKeyTests */,
 				8CCCB1E819D75E2100178BA1 /* Products */,
+				F39BC6E1D79F475591F023EF /* Pods.xcconfig */,
+				4F08285C873342FFBB960106 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,12 +107,12 @@
 		8CCCB1E919D75E2100178BA1 /* AdultKey */ = {
 			isa = PBXGroup;
 			children = (
-				8CCCB21119D75E8000178BA1 /* AdultKey.entitlements */,
 				8CCCB20C19D75E7200178BA1 /* util */,
 				8CCCB1EC19D75E2100178BA1 /* AppDelegate.swift */,
 				8CCCB1EE19D75E2100178BA1 /* ViewController.swift */,
+				8CCCB21419D7606800178BA1 /* SetHomeViewController.swift */,
+				8CCCB21919D7904000178BA1 /* AccessoriesTableViewController.swift */,
 				8CCCB1F019D75E2100178BA1 /* Main.storyboard */,
-				8CCCB1F319D75E2100178BA1 /* Images.xcassets */,
 				8CCCB1F519D75E2100178BA1 /* LaunchScreen.xib */,
 				8CCCB1EA19D75E2100178BA1 /* Supporting Files */,
 			);
@@ -101,7 +122,11 @@
 		8CCCB1EA19D75E2100178BA1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8CCCB1F319D75E2100178BA1 /* Images.xcassets */,
+				8CCCB21119D75E8000178BA1 /* AdultKey.entitlements */,
 				8CCCB1EB19D75E2100178BA1 /* Info.plist */,
+				8CCCB21719D7668900178BA1 /* bridge.m */,
+				8CCCB21619D7668900178BA1 /* AdultKey-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,9 +164,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CCCB20619D75E2100178BA1 /* Build configuration list for PBXNativeTarget "AdultKey" */;
 			buildPhases = (
+				84BAD46B697947608F8D00C1 /* Check Pods Manifest.lock */,
 				8CCCB1E319D75E2100178BA1 /* Sources */,
 				8CCCB1E419D75E2100178BA1 /* Frameworks */,
 				8CCCB1E519D75E2100178BA1 /* Resources */,
+				8EED7D6D3D334E2CB73F145F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,14 +260,50 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		84BAD46B697947608F8D00C1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8EED7D6D3D334E2CB73F145F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8CCCB1E319D75E2100178BA1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CCCB21819D7668900178BA1 /* bridge.m in Sources */,
 				8CCCB1EF19D75E2100178BA1 /* ViewController.swift in Sources */,
 				8CCCB20F19D75E7200178BA1 /* MyHomeManager.swift in Sources */,
 				8CCCB1ED19D75E2100178BA1 /* AppDelegate.swift in Sources */,
+				8CCCB21A19D7904000178BA1 /* AccessoriesTableViewController.swift in Sources */,
+				8CCCB21519D7606800178BA1 /* SetHomeViewController.swift in Sources */,
 				8CCCB21019D75E7200178BA1 /* util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,8 +425,10 @@
 		};
 		8CCCB20719D75E2100178BA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F39BC6E1D79F475591F023EF /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AdultKey/AdultKey.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -371,13 +436,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AdultKey/AdultKey-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		8CCCB20819D75E2100178BA1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F39BC6E1D79F475591F023EF /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = AdultKey/AdultKey.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -385,6 +454,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AdultKey/AdultKey-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -441,6 +511,7 @@
 				8CCCB20819D75E2100178BA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8CCCB20919D75E2100178BA1 /* Build configuration list for PBXNativeTarget "AdultKeyTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +520,7 @@
 				8CCCB20B19D75E2100178BA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

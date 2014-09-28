@@ -26,12 +26,12 @@ class MyHomeManager: HMHomeManager, HMHomeManagerDelegate{
     {
         super.init()
         self.delegate = self
-        self.addPrimaruHome()
     }
     
-    func addPrimaruHome()
+    func addPrimaruHome(name:String!)
     {
-        self.addHomeWithName("myHome",
+        SVProgressHUD.show()
+        self.addHomeWithName(name,
             completionHandler: { (home:HMHome!,err:NSError!)->Void in
                 if((err) != nil)
                 {
@@ -48,6 +48,22 @@ class MyHomeManager: HMHomeManager, HMHomeManagerDelegate{
         )
     }
     
+    func destroyAllHome()
+    {
+        var homes:[HMHome] = self.homes as [HMHome]
+        NSLog("delete target home:%d", homes.count)
+        for home:HMHome in homes
+        {
+            self.removeHome(home,
+                completionHandler: {(err:NSError!) -> Void in
+                    if(err == nil)
+                    {
+                        println("remove home err")
+                    }
+            })
+        }
+    }
+    
     // - homekit manager delegate
     func homeManager(manager: HMHomeManager!, didAddHome home: HMHome!)
     {
@@ -61,17 +77,22 @@ class MyHomeManager: HMHomeManager, HMHomeManagerDelegate{
     // アプリケーション内のhomeが装填される
     func homeManagerDidUpdateHomes(manager: HMHomeManager!)
     {
-        if(manager.homes.count > 0){
-            self.isEnable = true
-            NSLog("Primary home is %@", manager.primaryHome.name)
-            var notif:NSNotification = NSNotification(name: NOTIF_MYHOME_UPDATE, object: nil)
-            NSNotificationCenter.defaultCenter().postNotification(notif)
-            
-            for i in 0...self.homes.count{NSLog("homes:%@", self.homes[i].name)}
-        }
+        self.successSetHome()
     }
     
     func homeManagerDidUpdatePrimaryHome(manager: HMHomeManager!)
     {
+        self.successSetHome()
+    }
+    
+    func successSetHome()
+    {
+        if(self.homes.count > 0){
+            self.isEnable = true
+            NSLog("Set primary home is %@", self.primaryHome.name)
+        }
+        var notif:NSNotification = NSNotification(name: NOTIF_MYHOME_UPDATE, object: nil)
+        NSNotificationCenter.defaultCenter().postNotification(notif)
+        SVProgressHUD.dismiss()
     }
 }

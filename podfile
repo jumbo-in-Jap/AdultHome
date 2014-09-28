@@ -1,0 +1,10 @@
+platform :ios, '8.0'
+pod "AFNetworking"
+pod 'BlocksKit'
+pod 'SVProgressHUD'
+pod 'CocoaLumberjack'
+pod 'MagicalRecord'
+
+pod 'YLGIFImage'
+pod 'JDStatusBarNotification'
+pod 'SSKeychain'
