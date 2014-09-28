@@ -71,85 +71,158 @@ class util: NSObject {
     
     class func userAction(actionType:TYPE_USER_ACTION)
     {
-        switch (actionType)
-        {
-            case .normal:
-                println("normal")
-                self.actionNormal()
-            
-            case .light:
-                println("light")
-                self.actionLight()
-            
-            case .adult:
-                println("adult")
-                self.actionAdult()
-
-            default:
-                println("def")
-        }
-    }
-    
-    class func actionNormal()
-    {
         //self.addAccessory()
         var myhome:HMHome = MyHomeManager.sharedInstance.primaryHome
         var myhomeAccessories:[HMAccessory] = myhome.accessories as [HMAccessory]
-
+        
         for accessory in myhomeAccessories
         {
             //NSLog("Accessory name : %@", accessory.name) // accessroy name は更新されない
             if(accessory.name == "testAccessroy")
             {
-                accessory.identifyWithCompletionHandler(
-                    {(acc_err:NSError!)->Void in
-                        if (acc_err == nil)
+                self.actionTnTestAccessroy(accessory, type: actionType)
+            }
+        }
+        
+//        switch (actionType)
+//        {
+//            case .normal:
+//                println("normal")
+//                self.actionNormal()
+//            
+//            case .light:
+//                println("light")
+//                self.actionLight()
+//            
+//            case .adult:
+//                println("adult")
+//                self.actionAdult()
+//
+//            default:
+//                println("def")
+//        }
+    }
+    
+    class func actionTnTestAccessroy(accessory:HMAccessory, type:TYPE_USER_ACTION)
+    {
+        accessory.identifyWithCompletionHandler(
+            {(acc_err:NSError!)->Void in
+                if (acc_err == nil)
+                {
+                    var myhomeServices:[HMService] = accessory.services as [HMService]
+                    
+                    for service:HMService in myhomeServices
+                    {
+                        //NSLog("s - %@", service.name)
+                        if(service.name == "Lock")
                         {
-                            var myhomeActions:[HMActionSet] = myhome.actionSets as [HMActionSet]
-                            var myhomeServices:[HMService] = myhomeAccessories[0].services as [HMService]
+                            self.openKeyToLockService(service)
                             
-                            for service:HMService in myhomeServices
+                        }else if(service.name == "Hue")
+                        {
+                            if(type == TYPE_USER_ACTION.light)
                             {
-                                //NSLog("s - %@", service.name)
-                                if(service.name == "Lock")
-                                {
-                                    for characteristic:HMCharacteristic in service.characteristics as [HMCharacteristic]
-                                    {
-                                        NSLog("type %@", self.getCharctersticName(characteristic.characteristicType))
-                                        NSLog(" c - %@", characteristic.metadata)
-                                        if(characteristic.characteristicType == HMCharacteristicTypeTargetLockMechanismState)
-                                        {
-                                            characteristic.writeValue(1.0,
-                                                completionHandler:
-                                                {(err:NSError!)->Void in
-                                                    if(err == nil)
-                                                    {   println("open")
-                                                    }else{
-                                                        println("Faled to use characteristic \(err)")
-                                                    }
-                                            })
-                                        }
-                                    }
-                                }
+                                self.onHueService(service)
                             }
-                        }else{
-                            println("Faled to use Accessory \(acc_err)")
+                            else if(type == TYPE_USER_ACTION.adult)
+                            {
+                                self.onAndChangeColorService(service)
+                            }
                         }
+                    }
+                }else{
+                    println("Faled to use Accessory \(acc_err)")
                 }
-                )
-                
+            }
+        )
+    }
+    
+    class func openKeyToLockService(service:HMService)
+    {
+        for characteristic:HMCharacteristic in service.characteristics as [HMCharacteristic]
+        {
+            NSLog("type %@", self.getCharctersticName(characteristic.characteristicType))
+            NSLog(" c - %@", characteristic.metadata)
+            if(characteristic.characteristicType == HMCharacteristicTypeTargetLockMechanismState)
+            {
+                characteristic.writeValue(1.0,
+                    completionHandler:
+                    {(err:NSError!)->Void in
+                        if(err == nil)
+                        {   println("open")
+                        }else{
+                            println("Faled to use characteristic \(err)")
+                        }
+                })
             }
         }
     }
-
-    class func actionLight()
+    
+    class func onHueService(service:HMService)
     {
-        
+        for characteristic:HMCharacteristic in service.characteristics as [HMCharacteristic]
+        {
+            NSLog("type %@", self.getCharctersticName(characteristic.characteristicType))
+            NSLog(" c - %@", characteristic.metadata)
+            if(characteristic.characteristicType == HMCharacteristicTypePowerState)
+            {
+                characteristic.writeValue(true,
+                    completionHandler:
+                    {(err:NSError!)->Void in
+                        if(err == nil)
+                        {   println("open")
+                        }else{
+                            println("Faled to use characteristic \(err)")
+                        }
+                })
+            }
+        }
     }
-
-    class func actionAdult()
+    
+    class func onAndChangeColorService(service:HMService)
     {
-        
+        self.onHueService(service)
+        for characteristic:HMCharacteristic in service.characteristics as [HMCharacteristic]
+        {
+            NSLog("type %@", self.getCharctersticName(characteristic.characteristicType))
+            NSLog(" c - %@", characteristic.metadata)
+            if(characteristic.characteristicType == HMCharacteristicTypeHue)
+            {
+                characteristic.writeValue(330,
+                    completionHandler:
+                    {(err:NSError!)->Void in
+                        if(err == nil)
+                        {   println("open")
+                        }else{
+                            println("Faled to use characteristic \(err)")
+                        }
+                })
+            }
+            if(characteristic.characteristicType == HMCharacteristicTypeSaturation)
+            {
+                characteristic.writeValue(70,
+                    completionHandler:
+                    {(err:NSError!)->Void in
+                        if(err == nil)
+                        {   println("open")
+                        }else{
+                            println("Faled to use characteristic \(err)")
+                        }
+                })
+            }
+            if(characteristic.characteristicType == HMCharacteristicTypeBrightness)
+            {
+                characteristic.writeValue(100,
+                    completionHandler:
+                    {(err:NSError!)->Void in
+                        if(err == nil)
+                        {   println("open")
+                        }else{
+                            println("Faled to use characteristic \(err)")
+                        }
+                })
+            }
+        }
     }
 
 }
