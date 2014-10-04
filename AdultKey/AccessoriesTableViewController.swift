@@ -73,18 +73,19 @@ class AccessoriesTableViewController: UITableViewController,HMAccessoryBrowserDe
         if(indexPath.section == 1)
         {
             var targetAccessory:HMAccessory = self.findAccessories[indexPath.row]
-            var alertController = UIAlertController(title: "Confirm add Accessory", message: "Add to your home?", preferredStyle: .Alert)
+            var alertController = UIAlertController(title: "Confirm add Accessory", message: "Add "+targetAccessory.name+"to your home?", preferredStyle: .Alert)
             
             let otherAction = UIAlertAction(title: "OK", style: .Default) {
                 action in
                 // 捜査対象の追加
                 MyHomeManager.sharedInstance.primaryHome.addAccessory(targetAccessory,
                     completionHandler: {(err:NSError!) -> Void in
-                        if(err != nil)
+                        if(err == nil)
                         {
                             self.findAccessories.removeAtIndex(indexPath.row)
                             self.addedAccessories.append(targetAccessory)
                             self.tableView.reloadData()
+                            NSLog("added %@", targetAccessory.name)
                         }else{
                             println("Failed to add Accessory \(err)")
                         }
@@ -125,5 +126,5 @@ class AccessoriesTableViewController: UITableViewController,HMAccessoryBrowserDe
     {
         
     }
-
+    
 }
